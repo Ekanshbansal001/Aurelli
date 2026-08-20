@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AURELIA — Fine Jewellery</title>
+<meta name="description" content="AURELIA — jewellery that becomes part of your story. Timeless, thoughtfully designed pieces for the moments you'll remember.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===================== HEADER ===================== -->
+<header class="site-header" id="siteHeader">
+  <div class="wrap header-inner">
+    <nav class="nav-links">
+      <a href="#new-arrivals">New Arrivals</a>
+      <a href="#collections">Collections</a>
+      <a href="#shop">Jewellery</a>
+      <a href="#story">Our Story</a>
+      <a href="#journal">Journal</a>
+    </nav>
+
+    <a href="#" class="wordmark">AURELIA</a>
+
+    <div class="nav-actions">
+      <button class="icon-btn" id="searchToggle" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      </button>
+      <button class="icon-btn" aria-label="Account">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      </button>
+      <button class="icon-btn" id="wishlistToggle" aria-label="Wishlist">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20.5s-7.5-4.6-9.8-9A5.3 5.3 0 0 1 12 6.2 5.3 5.3 0 0 1 21.8 11.5c-2.3 4.4-9.8 9-9.8 9z"/></svg>
+        <span class="icon-count" id="wishlistCount">0</span>
+      </button>
+      <button class="icon-btn" id="cartToggle" aria-label="Bag">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 8h12l-1 12H7L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+        <span class="icon-count" id="cartCount">0</span>
+      </button>
+      <button class="burger" id="burger" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== MOBILE NAV ===================== -->
+<div class="mobile-nav" id="mobileNav">
+  <div class="mobile-nav-top">
+    <span class="wordmark">AURELIA</span>
+    <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <ul>
+    <li><a href="#new-arrivals">New Arrivals</a></li>
+    <li><a href="#collections">Collections</a></li>
+    <li><a href="#shop">Jewellery</a></li>
+    <li><a href="#story">Our Story</a></li>
+    <li><a href="#journal">Journal</a></li>
+  </ul>
+  <div class="mobile-nav-icons">
+    <button class="icon-btn" aria-label="Search" onclick="document.getElementById('mobileNavClose').click(); document.getElementById('searchToggle').click();">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+    </button>
+    <button class="icon-btn" aria-label="Wishlist" onclick="document.getElementById('mobileNavClose').click(); document.getElementById('wishlistToggle').click();">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20.5s-7.5-4.6-9.8-9A5.3 5.3 0 0 1 12 6.2 5.3 5.3 0 0 1 21.8 11.5c-2.3 4.4-9.8 9-9.8 9z"/></svg>
+    </button>
+    <button class="icon-btn" aria-label="Bag" onclick="document.getElementById('mobileNavClose').click(); document.getElementById('cartToggle').click();">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 8h12l-1 12H7L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+    </button>
+  </div>
+</div>
+
+<!-- ===================== SEARCH OVERLAY ===================== -->
+<div class="search-overlay" id="searchOverlay">
+  <div class="search-panel">
+    <div class="search-row">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input type="text" id="searchInput" placeholder="Search jewellery…" autocomplete="off">
+      <button class="search-close" id="searchClose" aria-label="Close search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="16" height="16"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+<!-- ===================== CART DRAWER ===================== -->
+<div class="drawer-overlay" id="cartOverlay"></div>
+<aside class="drawer" id="cartDrawer" aria-label="Shopping bag">
+  <div class="drawer-head">
+    <h3>Your Bag</h3>
+    <button class="drawer-close" aria-label="Close bag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="16" height="16"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <div class="drawer-body" id="cartItems"></div>
+  <div class="drawer-foot">
+    <div class="drawer-subtotal"><span>Subtotal</span><span id="cartSubtotalValue">₹0</span></div>
+    <button class="btn btn-ink btn-block" id="cartCheckoutBtn">Request This Selection</button>
+    <p class="drawer-note" id="cartNote"></p>
+  </div>
+</aside>
+
+<!-- ===================== WISHLIST DRAWER ===================== -->
+<div class="drawer-overlay" id="wishlistOverlay"></div>
+<aside class="drawer" id="wishlistDrawer" aria-label="Wishlist">
+  <div class="drawer-head">
+    <h3>Wishlist</h3>
+    <button class="drawer-close" aria-label="Close wishlist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="16" height="16"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <div class="drawer-body" id="wishlistItems"></div>
+</aside>
+
+<!-- ===================== QUICK VIEW MODAL ===================== -->
+<div class="modal-overlay" id="qvOverlay">
+  <div class="modal">
+    <button class="modal-close" id="qvClose" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="16" height="16"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div class="modal-media" id="qvMedia"></div>
+    <div class="modal-body">
+      <span class="pcard-cat" id="qvCat"></span>
+      <h3 id="qvName"></h3>
+      <p class="modal-desc" id="qvDesc"></p>
+      <div class="modal-specs" id="qvSpecs"></div>
+      <p class="modal-price" id="qvPrice"></p>
+      <div class="qty-stepper" style="margin-top:22px;">
+        <button id="qvQtyMinus" aria-label="Decrease quantity">−</button>
+        <span id="qvQtyValue">1</span>
+        <button id="qvQtyPlus" aria-label="Increase quantity">+</button>
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-ink" id="qvAddBtn">Add to Bag</button>
+        <button class="modal-wish" id="qvWishBtn" aria-label="Add to wishlist">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 20.5s-7.5-4.6-9.8-9A5.3 5.3 0 0 1 12 6.2 5.3 5.3 0 0 1 21.8 11.5c-2.3 4.4-9.8 9-9.8 9z"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div class="hero-line"></div>
+    <h1 class="display">Jewellery that becomes part of your story.</h1>
+    <p class="tagline">Timeless pieces, thoughtfully designed for the moments you'll remember.</p>
+    <div class="hero-actions">
+      <a href="#new-arrivals" class="btn btn-cream">Shop New Arrivals</a>
+      <a href="#collections" class="btn btn-ghost">Explore Collection</a>
+    </div>
+  </div>
+  <svg class="hero-motif" viewBox="0 0 200 260" fill="none" stroke="#C9A876" stroke-width="1">
+    <path d="M50 90 L100 30 L150 90 L100 230 Z"/>
+    <path d="M50 90 L150 90"/>
+    <path d="M75 90 L100 30 L125 90"/>
+    <path d="M75 90 L100 230 M125 90 L100 230"/>
+  </svg>
+  <div class="scroll-cue">Scroll</div>
+</section>
+
+<!-- ===================== NEW ARRIVALS ===================== -->
+<section class="pad arrivals-section" id="new-arrivals">
+  <div class="wrap">
+    <div class="head-row reveal">
+      <div class="head" style="margin-bottom:0;">
+        <span class="eyebrow">Just In</span>
+        <h2 class="display">New Arrivals</h2>
+      </div>
+      <a href="#shop" class="text-link">View All Jewellery</a>
+    </div>
+    <div class="grid-4" id="newArrivalsGrid"></div>
+  </div>
+</section>
+
+<!-- ===================== SHOP BY CATEGORY ===================== -->
+<section class="cat-section" id="collections">
+  <div class="wrap" style="padding-top:150px;">
+    <div class="head reveal">
+      <span class="eyebrow">Shop By Category</span>
+      <h2 class="display">Find Your Piece</h2>
+    </div>
+  </div>
+  <div class="cat-grid">
+    <div class="cat-tile duo duo-necklaces reveal" data-jump="necklaces">
+      <img class="duo-icon" src="" data-icon="necklace" alt="">
+      <div class="cat-tile-label"><span class="cat-tile-name display">Necklaces</span><span class="cat-tile-meta">Shop Necklaces</span></div>
+    </div>
+    <div class="cat-tile duo duo-earrings reveal" data-jump="earrings">
+      <img class="duo-icon" src="" data-icon="earrings" alt="">
+      <div class="cat-tile-label"><span class="cat-tile-name display">Earrings</span><span class="cat-tile-meta">Shop Earrings</span></div>
+    </div>
+    <div class="cat-tile duo duo-rings reveal" data-jump="rings">
+      <img class="duo-icon" src="" data-icon="ring" alt="">
+      <div class="cat-tile-label"><span class="cat-tile-name display">Rings</span><span class="cat-tile-meta">Shop Rings</span></div>
+    </div>
+    <div class="cat-tile duo duo-bracelets reveal" data-jump="bracelets">
+      <img class="duo-icon" src="" data-icon="bracelet" alt="">
+      <div class="cat-tile-label"><span class="cat-tile-name display">Bracelets</span><span class="cat-tile-meta">Shop Bracelets</span></div>
+    </div>
+  </div>
+  <div style="height:150px;"></div>
+</section>
+
+<!-- ===================== BRAND STORY ===================== -->
+<section class="pad story-section" id="story">
+  <div class="wrap story-grid">
+    <div class="story-media duo duo-story reveal"></div>
+    <div class="reveal story-copy">
+      <span class="eyebrow">Our Story</span>
+      <h2 class="display" style="font-size:clamp(2.1rem,4vw,3rem); margin-top:16px;">Crafted to last beyond the moment.</h2>
+      <p>AURELIA began with a simple frustration: too much fine jewellery is designed to be photographed once and worn rarely after. We set out to make the opposite — pieces built for the version of your life that actually happens, not just the occasion.</p>
+      <p>Every design passes through the same discipline before it ever reaches a client: a form simplified until nothing more can be removed, a setting engineered to survive years of ordinary wear, and a finish that ages the way good gold should — softly, not shabbily.</p>
+      <p>We work in small batches with a limited number of skilled hands, which means slower production and, we think, a better piece at the end of it.</p>
+      <a href="#craft" class="btn btn-line" style="margin-top:10px;">Discover Our Story</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== COLLECTION FEATURE ===================== -->
+<section class="collection-feature">
+  <div class="cf-banner duo duo-celestia">
+    <div class="wrap">
+      <span class="eyebrow on-dark">Featured Edit</span>
+      <h2 class="display" style="margin-top:18px;">The Celestia Collection</h2>
+      <p>A study in quiet light — three pieces built around a single idea: that brilliance doesn't need to be loud to be noticed. Anchored by the Celestia Halo Ring, this edit favours one considered stone over many small ones.</p>
+      <a href="#shop" class="btn btn-ghost" style="margin-top:36px;">Explore Collection</a>
+
+      <div class="cf-products">
+        <div class="grid-3" id="celestiaGrid"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CRAFTSMANSHIP ===================== -->
+<section class="pad craft-section" id="craft">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">The Art of the Detail</span>
+      <h2 class="display">What Sets a Piece Apart</h2>
+    </div>
+    <div class="craft-list">
+      <div class="craft-row reveal">
+        <span class="craft-num">01</span>
+        <span class="craft-title display">Thoughtful Design</span>
+        <p class="craft-text">Every piece starts as a question about how it will actually be worn — with a coat sleeve, through a full day at a desk, layered against skin — before it's ever a question of how it will look in a single photograph.</p>
+      </div>
+      <div class="craft-row reveal">
+        <span class="craft-num">02</span>
+        <span class="craft-title display">Fine Craftsmanship</span>
+        <p class="craft-text">Settings are finished and checked by hand, not just cast and shipped. A piece isn't released until it has survived the same wear test we'd expect a client to put it through in its first year.</p>
+      </div>
+      <div class="craft-row reveal">
+        <span class="craft-num">03</span>
+        <span class="craft-title display">Carefully Selected Materials</span>
+        <p class="craft-text">We work almost exclusively in 18K gold for its balance of durability and colour, and every stone is hand-selected for how it behaves in ordinary light, not just under a jeweller's loupe.</p>
+      </div>
+      <div class="craft-row reveal">
+        <span class="craft-num">04</span>
+        <span class="craft-title display">Made to Be Remembered</span>
+        <p class="craft-text">We'd rather make fewer pieces that mean something than more pieces that don't. If a design doesn't earn a place in someone's everyday rotation, it doesn't stay in the edit for long.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PRODUCT EXPERIENCE ===================== -->
+<section class="pad pe-section">
+  <div class="wrap pe-grid">
+    <div class="pe-media duo reveal" id="peMedia"></div>
+    <div class="reveal">
+      <span class="pe-cat" id="peCat"></span>
+      <h2 class="pe-name display" id="peName"></h2>
+      <p class="pe-desc" id="peDesc"></p>
+      <div class="pe-specs" id="peSpecs"></div>
+      <p class="pe-price display" id="pePrice"></p>
+      <div class="pe-actions">
+        <button class="btn btn-ink" id="peAddBtn">Add to Bag</button>
+        <button class="modal-wish" id="peWishBtn" aria-label="Add to wishlist">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 20.5s-7.5-4.6-9.8-9A5.3 5.3 0 0 1 12 6.2 5.3 5.3 0 0 1 21.8 11.5c-2.3 4.4-9.8 9-9.8 9z"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== LOOKBOOK ===================== -->
+<section class="pad lookbook-section">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">The Lookbook</span>
+      <h2 class="display">Worn, Not Just Displayed</h2>
+    </div>
+    <div class="look-grid" id="lookGrid"></div>
+  </div>
+</section>
+
+<!-- ===================== LOOKBOOK LIGHTBOX ===================== -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="16" height="16"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <button class="lightbox-prev" id="lightboxPrev" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="16" height="16"><path d="M15 6l-6 6 6 6"/></svg></button>
+  <div class="lightbox-panel" id="lightboxPanel"></div>
+  <button class="lightbox-next" id="lightboxNext" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="16" height="16"><path d="M9 6l6 6-6 6"/></svg></button>
+</div>
+
+<!-- ===================== REVIEWS ===================== -->
+<section class="pad reviews-section">
+  <div class="wrap">
+    <div class="head center reveal">
+      <span class="eyebrow">In Their Words</span>
+      <h2 class="display">From Our Clients</h2>
+    </div>
+    <div class="review-track-wrap">
+      <div class="review-track" id="reviewTrack"></div>
+    </div>
+    <div class="review-dots" id="reviewDots"></div>
+  </div>
+</section>
+
+<!-- ===================== JOURNAL ===================== -->
+<section class="pad journal-section" id="journal">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">The Aurelia Journal</span>
+      <h2 class="display">Stories &amp; Guides</h2>
+    </div>
+    <div class="grid-4" id="journalGrid"></div>
+  </div>
+</section>
+
+<!-- ===================== JOURNAL MODAL ===================== -->
+<div class="jmodal-overlay" id="jmodalOverlay">
+  <div class="jmodal">
+    <button class="jmodal-close" id="jmodalClose" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="16" height="16"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <span class="jmodal-cat" id="jmodalCat"></span>
+    <h3 class="jmodal-title" id="jmodalTitle"></h3>
+    <div class="jmodal-body" id="jmodalBody"></div>
+  </div>
+</div>
+
+<!-- ===================== SERVICES ===================== -->
+<section class="services-section" id="services">
+  <div class="wrap" style="padding-top:110px;">
+    <div class="head on-dark reveal">
+      <span class="eyebrow">Client Experience</span>
+      <h2 class="display">Every Detail, Considered</h2>
+    </div>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 3v18M5 8l7-5 7 5M5 16l7 5 7-5"/></svg>
+      <div class="service-title display">Complimentary Styling</div>
+      <p class="service-text">Personalised help choosing pieces, in-studio or over a video call, at no cost.</p>
+    </div>
+    <div class="service-card reveal">
+      <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="4" y="8" width="16" height="12" rx="1"/><path d="M4 8l8-5 8 5M12 8v12"/></svg>
+      <div class="service-title display">Gift Packaging</div>
+      <p class="service-text">Elegant presentation as standard, for the moments that deserve to be unwrapped slowly.</p>
+    </div>
+    <div class="service-card reveal">
+      <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="7" width="18" height="13" rx="1"/><path d="M3 7l9 6 9-6"/></svg>
+      <div class="service-title display">Secure Delivery</div>
+      <p class="service-text">Every piece is carefully packaged and tracked from our studio to your door.</p>
+    </div>
+    <div class="service-card reveal">
+      <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M4 4h16v12H8l-4 4V4z"/></svg>
+      <div class="service-title display">Easy Assistance</div>
+      <p class="service-text">Reach our team directly for sizing, care or general questions.</p>
+      <a class="service-link text-link" href="https://wa.me/911234567890" target="_blank" rel="noopener">Message Us</a>
+    </div>
+  </div>
+  <div style="height:110px;"></div>
+</section>
+
+<!-- ===================== NEWSLETTER ===================== -->
+<section class="pad newsletter-section">
+  <div class="wrap">
+    <div class="news-box reveal">
+      <span class="eyebrow">Stay Close</span>
+      <h2 class="display" style="font-size:clamp(1.9rem,3.4vw,2.6rem); margin-top:16px;">Join The Aurelia List</h2>
+      <p style="margin-top:16px; color:var(--text-mute); line-height:1.7;">Be the first to discover new collections, private previews and stories from AURELIA.</p>
+      <form class="news-form" id="newsletterForm">
+        <input type="email" placeholder="Your email address" required>
+        <button type="submit">Join</button>
+      </form>
+      <p class="news-note" id="newsletterNote"></p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FINAL CTA ===================== -->
+<section class="final-cta duo duo-final">
+  <div class="wrap">
+    <h2 class="display">Find the piece that feels like you.</h2>
+    <a href="#shop" class="btn btn-cream">Explore Aurelia</a>
+  </div>
+</section>
+
+<!-- ===================== FULL CATALOGUE (Jewellery) ===================== -->
+<section class="pad arrivals-section" id="shop" style="background:var(--bone-deep);">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">Jewellery</span>
+      <h2 class="display">The Full Edit</h2>
+      <p>Every piece currently in the collection, in one place. Filter by category or use search to jump straight to a piece.</p>
+    </div>
+    <div class="filter-row reveal" style="display:flex; flex-wrap:wrap; gap:10px; margin-bottom:48px;">
+      <button class="filter-btn btn-line btn active" data-filter="all">All</button>
+      <button class="filter-btn btn-line btn" data-filter="necklaces">Necklaces</button>
+      <button class="filter-btn btn-line btn" data-filter="earrings">Earrings</button>
+      <button class="filter-btn btn-line btn" data-filter="rings">Rings</button>
+      <button class="filter-btn btn-line btn" data-filter="bracelets">Bracelets</button>
+    </div>
+    <div class="grid-4" id="shopGrid"></div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="wrap footer-top">
+    <div class="footer-brand">
+      <span class="wordmark">AURELIA</span>
+      <p>Thoughtfully designed fine jewellery, made in small batches by a small team who care about how it wears, not just how it photographs.</p>
+      <div class="footer-social">
+        <a class="icon-btn" href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg></a>
+        <a class="icon-btn" href="#" aria-label="Pinterest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><path d="M9 17c1-3 1.6-6 2-8.5.3-1.7 3-1.7 3 .3 0 1.4-1 3.2-1.5 4.7-.4 1.3.6 2.4 1.9 2 1.9-.6 2.8-2.7 2.8-4.6 0-2.7-2.3-4.9-5.5-4.9-3.6 0-5.8 2.6-5.8 5.3 0 1 .3 1.7.8 2.3"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Navigation</h5>
+      <ul>
+        <li><a href="#new-arrivals">New Arrivals</a></li>
+        <li><a href="#collections">Collections</a></li>
+        <li><a href="#shop">Jewellery</a></li>
+        <li><a href="#story">Our Story</a></li>
+        <li><a href="#journal">Journal</a></li>
+        <li><a href="#services">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Customer Care</h5>
+      <ul>
+        <li><a href="#">Shipping</a></li>
+        <li><a href="#">Returns</a></li>
+        <li><a href="#">Jewellery Care</a></li>
+        <li><a href="#">FAQs</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Social</h5>
+      <ul>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Pinterest</a></li>
+      </ul>
+    </div>
+    <div class="footer-col footer-news">
+      <h5>Newsletter</h5>
+      <p>New collections and private previews, a few times a year.</p>
+      <a href="#newsletterForm" class="text-link">Sign Up ↓</a>
+    </div>
+  </div>
+  <div class="wrap footer-bottom">
+    <span>© <span id="year"></span> AURELIA. All rights reserved.</span>
+    <span><a href="#">Privacy</a><a href="#">Terms</a></span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
